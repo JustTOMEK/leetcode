@@ -15,4 +15,4 @@ class Solution:
                 right -= 1
                 right_max = max(right_max, height[right])
                 water += right_max - height[right]
-        print(water)
+        return water
