@@ -2,34 +2,26 @@ class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if numRows == 1:
             return s
-        rows = []
-        for i in range(numRows):
-            rows.append([])
-            for j in range(len(s)):
-                rows[i].append('')
+
+        rows = [[] for i in range(numRows)]
 
 
-        char_index = 0
-        rows[0][0] = s[char_index]
-        phase = 'down'
-        x = 0
-        y = 0
-        while char_index < len(s) - 1:
-            char_index += 1
-            if y == 0:
-                phase = 'down'
-            elif y == numRows - 1:
-                phase = 'up'
-            if phase == 'up':
-                x += 1
-                y -= 1
+        phase = "down"
+        row_number = 0
+
+        for char in s:
+            rows[row_number].append(char)
+            if row_number == 0:
+                phase = "down"
+            elif row_number == numRows - 1:
+                phase = "up"
+            if phase == "up":
+                row_number -= 1
             else:
-                y += 1
-            rows[y][x] = s[char_index]
+                row_number += 1
 
-        answer = ''
+        answer = ""
         for row in rows:
             for letter in row:
                 answer += letter
-
         return answer
